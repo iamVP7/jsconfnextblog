@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 import { marked } from 'marked'
 import Link from 'next/link'
 
-import { getAllPostSlugs,getPostData } from '../../lib/utils'
+import { getAllPostSlugs } from '../../lib/utils'
 
 export default function PostPage({
     frontmatter: { title, date, cover_image },
@@ -43,10 +43,6 @@ export async function getStaticProps({ params: { slug } }) {
     const markdownWithMeta = fs.readFileSync(postPath, 'utf-8')
 
     const { data: frontmatter, content } = matter(markdownWithMeta)
-
-    const {valuesCame:tempContent} = getPostData(slug)
-    
-    console.log(tempContent)
 
     return {
         props: {
